@@ -132,14 +132,15 @@ Client Example
 	$msg = WebSocketMessage::create($input);
 
 	$client = new WebSocket("ws://127.0.0.1:12345/echo/");
-	$client->open();
-	$client->sendMessage($msg);
+	if($client->open() === true) {
+		$client->sendMessage($msg);
 
-	// Wait for an incoming message
-	$msg = $client->readMessage();
+		// Wait for an incoming message
+		$msg = $client->readMessage();
 
-	$client->close();
+		$client->close();
 
-	echo $msg->getData(); // Prints "Hello World!" when using the demo.php server
+		echo $msg->getData(); // Prints "Hello World!" when using the demo.php server
+	}
        ?>
 ```
