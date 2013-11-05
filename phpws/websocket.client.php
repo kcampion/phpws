@@ -112,6 +112,10 @@ class WebSocket implements WebSocketObserver
 
         $this->socket = stream_socket_client("$protocol://{$this->host}:{$this->port}", $errno, $errstr, $this->getTimeOut());
 
+        if($this->socket === false) {
+			return false;
+		}
+
         // mamta
         if ($this->hybi) {
             $this->buildHeaderArray();
